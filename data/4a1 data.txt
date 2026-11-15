@@ -1,0 +1,627 @@
+# -*- coding: utf-8 -*-
+
+lesson_data = {
+    "lesson_title": "Bài 1: 我们来中国学习了 (Chúng tôi đến Trung Quốc học tập)",
+    "blocks": [
+        # ==================== TRANG BÌA ====================
+        {
+            "type": "title_slide",
+            "data": {
+                "title_zh": "我们来中国学习了",
+                "lesson_number": "1",
+                "bg_image": "assets/hinhnen.png",
+                "show_number": True
+            }
+        },
+
+        # ==================== MỤC TIÊU ====================
+        {
+            "type": "objectives",
+            "data": {
+                "items": [
+                    {"zh": "能够听懂并交流办理入学手续和申请奖学金的信息。", "vi": "Có thể nghe hiểu và trao đổi thông tin về thủ tục nhập học và xin học bổng."},
+                    {"zh": "能够口头或书面表达专业选择理由及未来职业发展方向。", "vi": "Có thể trình bày bằng lời nói hoặc văn bản lý do chọn chuyên ngành và hướng phát triển nghề nghiệp trong tương lai."},
+                    {"zh": "了解外国学生在中国大学的学习和生活情况。", "vi": "Hiểu biết về việc học tập và sinh hoạt của sinh viên nước ngoài tại các trường đại học Trung Quốc."}
+                ]
+            }
+        },
+
+        # ==================== KHỞI ĐỘNG ====================
+        {
+            "type": "warmup",
+            "data": {
+                "title": "Khởi động",
+                "instruction": "Chọn từ ngữ phù hợp với hình ảnh tương ứng.",
+                "raw_options": [
+                    {"zh": "证件", "pinyin": "zhèngjiàn", "img": "assets/warmup_1.png", "answer": "A"},
+                    {"zh": "博士", "pinyin": "bóshì", "img": "assets/warmup_2.png", "answer": "B"},
+                    {"zh": "食堂", "pinyin": "shítáng", "img": "assets/warmup_3.png", "answer": "C"},
+                    {"zh": "材料", "pinyin": "cáiliào", "img": "assets/warmup_4.png", "answer": "D"},
+                    {"zh": "教师", "pinyin": "jiàoshī", "img": "assets/warmup_5.png", "answer": "E"},
+                    {"zh": "加油", "pinyin": "jiāyóu", "img": "assets/warmup_6.png", "answer": "F"}
+                ]
+            }
+        },
+        {
+            "type": "qa_slide",
+            "data": {
+                "title": "Khởi động",
+                "instruction": "Hai người một nhóm, dựa vào tình huống thực tế để hỏi đáp.",
+                "questions": [
+                    "到中国留学，需要准备什么证件和材料？",
+                    "你打算学习什么专业？为什么？"
+                ]
+            }
+        },
+
+        # ==================== BÀI KHÓA 1 ====================
+        {
+            "type": "title_slide",
+            "data": {
+                "title_zh": "课文 1",
+                "lesson_number": "1",
+                "bg_image": "assets/hinhnen.png",
+                "show_number": False
+            }
+        },
+        {
+            "type": "vocabulary_table",
+            "data": {
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "2",
+                "words": [
+                    {"stt": 1, "zh": "签证", "pinyin": "qiānzhèng", "type": "danh", "hanviet": "Thiêm chứng", "vi": "thị thực, visa"},
+                    {"stt": 2, "zh": "入学", "pinyin": "rùxué", "type": "động", "hanviet": "Nhập học", "vi": "nhập học"},
+                    {"stt": 3, "zh": "通知", "pinyin": "tōngzhī", "type": "động/danh", "hanviet": "Thông tri", "vi": "thông báo; giấy báo"},
+                    {"stt": 4, "zh": "证件", "pinyin": "zhèngjiàn", "type": "danh", "hanviet": "Chứng kiện", "vi": "giấy tờ"},
+                    {"stt": 5, "zh": "材料", "pinyin": "cáiliào", "type": "danh", "hanviet": "Tài liệu", "vi": "tài liệu, vật liệu"},
+                    {"stt": 6, "zh": "证", "pinyin": "zhèng", "type": "danh", "hanviet": "Chứng", "vi": "giấy chứng nhận"},
+                    {"stt": 7, "zh": "任何", "pinyin": "rènhé", "type": "đại", "hanviet": "Nhậm hà", "vi": "bất kỳ"}
+                ]
+            }
+        },
+        {
+            "type": "listening_abcd",
+            "data": {
+                "title": "Nghe và chọn đáp án đúng",
+                "context_zh": "在学院办公室，白家月和陈天中在办理入学手续。",
+                "context_vi": "Tại văn phòng học viện, Bạch Giai Nguyệt và Trần Thiên Trung đang làm thủ tục nhập học.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "1",
+                "questions": [
+                    {
+                        "q_zh": "老师给白家月什么了？",
+                        "options": ["A. 护照", "B. 签证", "C. 学生证", "D. 入学通知书"]
+                    },
+                    {
+                        "q_zh": "他们什么时候开始上课？",
+                        "options": ["A. 今天", "B. 明天", "C. 下周一", "D. 两周后"]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "text_hsk3",
+            "data": {
+                "title": "课文\n1",
+                "context_zh": "在学院办公室，白家月和陈天中在办理入学手续。",
+                "context_vi": "Tại văn phòng học viện, Bạch Giai Nguyệt và Trần Thiên Trung đang làm thủ tục nhập học.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "1",
+                "lines": [
+                    {"speaker": "老师:", "text": "你们好，欢迎来到中国留学！请把护照、签证和入学通知书给我。"},
+                    {"speaker": "白家月:", "text": "好的。这是我们的证件和材料。"},
+                    {"speaker": "老师:", "text": "（几分钟后。）办好了，这是你们的学生证，下周一开始上课。先试听两周，然后在网上选课。"},
+                    {"speaker": "白家月:", "text": "谢谢老师。"},
+                    {"speaker": "老师:", "text": "不客气，你们以后有任何问题都可以来找我。"}
+                ]
+            }
+        },
+        {
+            "type": "qa_slide",
+            "data": {
+                "title": "Đọc phân vai và trả lời câu hỏi",
+                "questions": [
+                    "他们要给老师什么证件和材料？",
+                    "他们在哪儿选课？"
+                ]
+            }
+        },
+        {
+            "type": "retell_hsk4",
+            "data": {
+                "title": "根据给出的提示复述课文",
+                "text": "白家月和陈天中来中国________。他们把________给老师，老师给他们办了________。老师告诉他们，下周一________，先________，然后________。以后如果有________，都可以________。"
+            }
+        },
+        {
+            "type": "grammar",
+            "data": {
+                "title_vi": "1. Đại từ chỉ định “任何”",
+                "description_zh": "指示代词“任何”表示“无论什么”的意思，修饰名词时一般不带“的”，后面常有“都”或“也”与之搭配。例如：",
+                "formula": "任何 + 名词 + 都/也 + 动词",
+                "explanation_vi": "Đại từ chỉ định “任何” có nghĩa là “bất kỳ cái gì”, khi bổ nghĩa cho danh từ thường không mang “的”, phía sau thường có “都” hoặc “也” đi kèm.",
+                "examples": [
+                    "(1) 你们以后有任何问题都可以来找我。",
+                    "(2) 明天我们8点出发，任何人也不能迟到。",
+                    "(3) 学校有任何通知，我都会第一时间告诉你。"
+                ]
+            }
+        },
+        {
+            "type": "open_cloze",
+            "data": {
+                "title": "完成对话",
+                "questions": [
+                    "A: 听说王老师特别热情？\nB: ______",
+                    "A: 外国学生能参加学校运动会吗？\nB: ______",
+                    "A: 明天的会议，不会有变化了吧？\nB: ______"
+                ]
+            }
+        },
+
+        # ==================== BÀI KHÓA 2 ====================
+        {
+            "type": "title_slide",
+            "data": {
+                "title_zh": "课文 2",
+                "lesson_number": "1",
+                "bg_image": "assets/hinhnen.png",
+                "show_number": False
+            }
+        },
+        {
+            "type": "vocabulary_table",
+            "data": {
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "4",
+                "words": [
+                    {"stt": 8, "zh": "食堂", "pinyin": "shítáng", "type": "danh", "hanviet": "Thực đường", "vi": "nhà ăn"},
+                    {"stt": 9, "zh": "座", "pinyin": "zuò", "type": "lượng", "hanviet": "Tọa", "vi": "tòa (lượng từ)"},
+                    {"stt": 10, "zh": "申请", "pinyin": "shēnqǐng", "type": "động", "hanviet": "Thân thỉnh", "vi": "xin, ứng tuyển"},
+                    {"stt": 11, "zh": "奖学金", "pinyin": "jiǎngxuéjīn", "type": "danh", "hanviet": "Tưởng học kim", "vi": "học bổng"},
+                    {"stt": 12, "zh": "表现", "pinyin": "biǎoxiàn", "type": "động", "hanviet": "Biểu hiện", "vi": "biểu hiện, thể hiện"},
+                    {"stt": 13, "zh": "获得", "pinyin": "huòdé", "type": "động", "hanviet": "Hoạch đắc", "vi": "đạt được, giành được"},
+                    {"stt": 14, "zh": "要是", "pinyin": "yàoshì", "type": "liên", "hanviet": "Yếu thị", "vi": "nếu như"},
+                    {"stt": 15, "zh": "减轻", "pinyin": "jiǎnqīng", "type": "động", "hanviet": "Giảm khinh", "vi": "giảm nhẹ"},
+                    {"stt": 16, "zh": "经济", "pinyin": "jīngjì", "type": "danh", "hanviet": "Kinh tế", "vi": "kinh tế"},
+                    {"stt": 17, "zh": "压力", "pinyin": "yālì", "type": "danh", "hanviet": "Áp lực", "vi": "áp lực"},
+                    {"stt": 18, "zh": "加油", "pinyin": "jiāyóu", "type": "động", "hanviet": "Gia du", "vi": "cố lên, tiếp thêm sức mạnh"}
+                ]
+            }
+        },
+        {
+            "type": "listening_abcd",
+            "data": {
+                "title": "Nghe và chọn đáp án đúng",
+                "context_zh": "在大学校园，白家月和陈天中边逛边聊。",
+                "context_vi": "Trong khuôn viên đại học, Bạch Giai Nguyệt và Trần Thiên Trung vừa đi dạo vừa trò chuyện.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "3",
+                "questions": [
+                    {
+                        "q_zh": "白家月觉得学校怎么样？",
+                        "options": ["A. 不太大", "B. 很安静", "C. 非常不方便", "D. 像座小城市"]
+                    },
+                    {
+                        "q_zh": "陈天中为什么想申请奖学金？",
+                        "options": ["A. 想提高成绩", "B. 想让家人高兴", "C. 为了减轻经济压力", "D. 为了认识表现好的同学"]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "text_hsk3",
+            "data": {
+                "title": "课文\n2",
+                "context_zh": "在大学校园，白家月和陈天中边逛边聊。",
+                "context_vi": "Trong khuôn viên đại học, Bạch Giai Nguyệt và Trần Thiên Trung vừa đi dạo vừa trò chuyện.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "3",
+                "lines": [
+                    {"speaker": "陈天中:", "text": "你看，咱们的校园真大！有图书馆、体育馆、超市，还有好几个食堂。"},
+                    {"speaker": "白家月:", "text": "是啊，我觉得学校就像一座小城市，什么都有，方便极了。"},
+                    {"speaker": "陈天中:", "text": "刚才老师说，咱们可以申请奖学金，你了解过吗？"},
+                    {"speaker": "白家月:", "text": "我听说过一点儿，好像成绩好、表现好的学生都有机会获得奖学金。"},
+                    {"speaker": "陈天中:", "text": "那太好了，要是申请到奖学金，就能减轻不少经济压力。"},
+                    {"speaker": "白家月:", "text": "没错，我们一起加油吧！"}
+                ]
+            }
+        },
+        {
+            "type": "qa_slide",
+            "data": {
+                "title": "Đọc phân vai và trả lời câu hỏi",
+                "questions": [
+                    "他们的校园里有什么？",
+                    "什么样的学生有机会获得奖学金？"
+                ]
+            }
+        },
+        {
+            "type": "grammar",
+            "data": {
+                "title_vi": "2. Câu phức giả định “要是……，就……”",
+                "description_zh": "前一分句提出假设，后一分句表示假设实现后产生的结果。例如：",
+                "formula": "要是 + 假设条件 + ，就 + 结果",
+                "explanation_vi": "Phân câu trước đưa ra giả định, phân câu sau biểu thị kết quả sinh ra sau khi giả định được thực hiện.",
+                "examples": [
+                    "(1) 要是申请到奖学金，就能减轻不少经济压力。",
+                    "(2) 你要是明天有时间，就跟我一起去爬山吧。",
+                    "(3) 要是她不愿意参加比赛，我们就再问问别人。"
+                ]
+            }
+        },
+        {
+            "type": "open_cloze",
+            "data": {
+                "title": "完成对话",
+                "questions": [
+                    "A: 你不开心的时候会做什么？\nB: 我要是不开心，______",
+                    "A: ______，咱们就去看电影。\nB: 好啊，没问题。",
+                    "A: 谢谢你帮助了我。要是______\nB: 不客气。"
+                ]
+            }
+        },
+
+        # ==================== BÀI KHÓA 3 ====================
+        {
+            "type": "title_slide",
+            "data": {
+                "title_zh": "课文 3",
+                "lesson_number": "1",
+                "bg_image": "assets/hinhnen.png",
+                "show_number": False
+            }
+        },
+        {
+            "type": "vocabulary_table",
+            "data": {
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "6",
+                "words": [
+                    {"stt": 19, "zh": "随着", "pinyin": "suízhe", "type": "giới", "hanviet": "Tùy trứ", "vi": "cùng với"},
+                    {"stt": 20, "zh": "课程", "pinyin": "kèchéng", "type": "danh", "hanviet": "Khóa trình", "vi": "khóa học, chương trình học"},
+                    {"stt": 21, "zh": "专业", "pinyin": "zhuānyè", "type": "danh/tính", "hanviet": "Chuyên nghiệp", "vi": "chuyên ngành; chuyên nghiệp"},
+                    {"stt": 22, "zh": "本科", "pinyin": "běnkē", "type": "danh", "hanviet": "Bản khoa", "vi": "đại học (hệ cử nhân)"},
+                    {"stt": 23, "zh": "硕士", "pinyin": "shuòshì", "type": "danh", "hanviet": "Thạc sĩ", "vi": "thạc sĩ"},
+                    {"stt": 24, "zh": "研究生", "pinyin": "yánjiūshēng", "type": "danh", "hanviet": "Nghiên cứu sinh", "vi": "nghiên cứu sinh, học viên cao học"},
+                    {"stt": 25, "zh": "博士", "pinyin": "bóshì", "type": "danh", "hanviet": "Bác sĩ", "vi": "tiến sĩ"},
+                    {"stt": 26, "zh": "研究", "pinyin": "yánjiū", "type": "động", "hanviet": "Nghiên cứu", "vi": "nghiên cứu"},
+                    {"stt": 27, "zh": "活动", "pinyin": "huódòng", "type": "danh/động", "hanviet": "Hoạt động", "vi": "hoạt động"},
+                    {"stt": 28, "zh": "通过", "pinyin": "tōngguò", "type": "giới/động", "hanviet": "Thông quá", "vi": "thông qua; đi qua"},
+                    {"stt": 29, "zh": "交流", "pinyin": "jiāoliú", "type": "động", "hanviet": "Giao lưu", "vi": "giao lưu"},
+                    {"stt": 30, "zh": "适应", "pinyin": "shìyìng", "type": "động", "hanviet": "Thích ứng", "vi": "thích ứng"}
+                ]
+            }
+        },
+        {
+            "type": "listening_abcd",
+            "data": {
+                "title": "Nghe và chọn đáp án đúng",
+                "context_zh": "外国学生在中国大学的学习和生活",
+                "context_vi": "Việc học tập và sinh hoạt của sinh viên nước ngoài tại các trường đại học Trung Quốc.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "5",
+                "questions": [
+                    {
+                        "q_zh": "外国学生可以根据什么选择专业？",
+                        "options": ["A. 中文水平", "B. 自己的兴趣", "C. 学校的要求", "D. 家人的需要"]
+                    },
+                    {
+                        "q_zh": "外国学生怎么能更快地适应中国的大学生活？",
+                        "options": ["A. 多上中文课程", "B. 多去图书馆学习", "C. 多研究中国文化", "D. 多跟中国学生交流"]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "text_hsk3",
+            "data": {
+                "title": "课文\n3",
+                "context_zh": "外国学生在中国大学的学习和生活",
+                "context_vi": "Việc học tập và sinh hoạt của sinh viên nước ngoài tại các trường đại học Trung Quốc.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "5",
+                "lines": [
+                    {"speaker": "旁白:", "text": "随着中国的发展，越来越多的外国学生来到中国的大学学习。他们可以先上一年的中文课程，然后根据自己的兴趣和需要选择专业。除了读本科课程，他们还可以申请读硕士研究生或者博士研究生。"},
+                    {"speaker": "旁白:", "text": "在大学里，外国学生可以和中国学生一起学习、做研究、参加校园活动。通过这些交流，外国学生能更快地适应中国的大学生活。"}
+                ]
+            }
+        },
+        {
+            "type": "qa_slide",
+            "data": {
+                "title": "Đọc bài khóa và trả lời câu hỏi",
+                "questions": [
+                    "为什么很多外国学生来中国学习？",
+                    "除了学习，外国学生还可以和中国学生一起做什么？"
+                ]
+            }
+        },
+        {
+            "type": "retell_hsk4",
+            "data": {
+                "title": "根据给出的提示复述课文",
+                "text": "随着________，越来越多的外国学生________。他们可以先________，然后根据自己的兴趣和需要________。除了读________，他们还可以申请读________。在大学里，他们可以和中国学生一起________。通过这些交流，外国学生能________。"
+            }
+        },
+        {
+            "type": "grammar",
+            "data": {
+                "title_vi": "3. Giới từ “随着”",
+                "description_zh": "介词“随着”后面一般是表示变化的词语或小句，表示一件事是另一件事发生的条件。例如：",
+                "formula": "随着 + 变化 + ， + 结果",
+                "explanation_vi": "Giới từ “随着” theo sau thường là từ ngữ hoặc mệnh đề biểu thị sự thay đổi, biểu thị một việc là điều kiện để việc khác xảy ra.",
+                "examples": [
+                    "(1) 随着中国的发展，越来越多的外国学生来到中国的大学学习。",
+                    "(2) 随着中文水平的提高，我现在能看懂中文报纸了。",
+                    "(3) 随着小区的环境越来越好，来这里买房子的人也变多了。"
+                ]
+            }
+        },
+        {
+            "type": "open_cloze",
+            "data": {
+                "title": "完成句子",
+                "questions": [
+                    "随着______，人们越来越关注身体健康。(提高)",
+                    "随着来中国留学的人越来越多，______。(交流)",
+                    "随着______，人们都换上了凉快的衣服。(天气)"
+                ]
+            }
+        },
+
+        # ==================== BÀI KHÓA 4 ====================
+        {
+            "type": "title_slide",
+            "data": {
+                "title_zh": "课文 4",
+                "lesson_number": "1",
+                "bg_image": "assets/hinhnen.png",
+                "show_number": False
+            }
+        },
+        {
+            "type": "vocabulary_table",
+            "data": {
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "8",
+                "words": [
+                    {"stt": 31, "zh": "将来", "pinyin": "jiānglái", "type": "danh", "hanviet": "Tương lai", "vi": "tương lai"},
+                    {"stt": 32, "zh": "国际", "pinyin": "guójì", "type": "danh/tính", "hanviet": "Quốc tế", "vi": "quốc tế"},
+                    {"stt": 33, "zh": "当", "pinyin": "dāng", "type": "động", "hanviet": "Đương", "vi": "làm, đảm nhận"},
+                    {"stt": 34, "zh": "教育", "pinyin": "jiàoyù", "type": "danh/động", "hanviet": "Giáo dục", "vi": "giáo dục"},
+                    {"stt": 35, "zh": "成为", "pinyin": "chéngwéi", "type": "động", "hanviet": "Thành vi", "vi": "trở thành"},
+                    {"stt": 36, "zh": "教师", "pinyin": "jiàoshī", "type": "danh", "hanviet": "Giáo sư", "vi": "giáo viên"},
+                    {"stt": 37, "zh": "贸易", "pinyin": "màoyì", "type": "danh", "hanviet": "Mậu dịch", "vi": "thương mại"},
+                    {"stt": 38, "zh": "方面", "pinyin": "fāngmiàn", "type": "danh", "hanviet": "Phương diện", "vi": "phương diện, mặt"},
+                    {"stt": 39, "zh": "知识", "pinyin": "zhīshí", "type": "danh", "hanviet": "Tri thức", "vi": "tri thức, kiến thức"},
+                    {"stt": 40, "zh": "另", "pinyin": "lìng", "type": "đại", "hanviet": "Lánh", "vi": "khác, cái khác"}
+                ]
+            }
+        },
+        {
+            "type": "listening_abcd",
+            "data": {
+                "title": "Đọc bài khóa và chọn đáp án đúng",
+                "context_zh": "专业选择与职业发展",
+                "context_vi": "Lựa chọn chuyên ngành và phát triển nghề nghiệp.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "7",
+                "questions": [
+                    {
+                        "q_zh": "很多外国学生来中国学习以前，做了什么准备？",
+                        "options": ["A. 学会了中文", "B. 找好了工作", "C. 想好了发展方向", "D. 认识了很多中国朋友"]
+                    },
+                    {
+                        "q_zh": "安妮以后想做什么？",
+                        "options": ["A. 当医生", "B. 成为老师", "C. 自己开公司", "D. 做国际贸易"]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "text_hsk3",
+            "data": {
+                "title": "课文\n4",
+                "context_zh": "专业选择与职业发展",
+                "context_vi": "Lựa chọn chuyên ngành và phát triển nghề nghiệp.",
+                "lesson_num": "1",
+                "level": "4",
+                "audio_index": "7",
+                "lines": [
+                    {"speaker": "旁白:", "text": "很多外国学生来中国学习以前，就已经想好了自己的发展方向。有人对经济感兴趣，希望将来在国际公司工作；有人喜欢学医，打算回国后当一名医生；还有人对教育有热情，想要成为一名教师。"},
+                    {"speaker": "旁白:", "text": "陈天中想选择跟经济有关的专业，希望通过学习，了解更多国际贸易方面的知识。安妮以后想做一名中文老师，所以要选择国际中文教育专业。对他们来说，来到中国留学，一方面是为了学习语言和知识，另一方面也是为将来的工作和生活做准备。"}
+                ]
+            }
+        },
+        {
+            "type": "qa_slide",
+            "data": {
+                "title": "Đọc bài khóa và trả lời câu hỏi",
+                "questions": [
+                    "陈天中想选择什么专业？为什么？",
+                    "陈天中和安妮来到中国留学是为了什么？"
+                ]
+            }
+        },
+        {
+            "type": "grammar",
+            "data": {
+                "title_vi": "4. Câu phức song song “一方面……，另一方面……”",
+                "description_zh": "并列复句“一方面……，另一方面……”一般用于说明同时存在的两个方面的原因、情况等。例如：",
+                "formula": "一方面 + …… + ，另一方面 + ……",
+                "explanation_vi": "Câu phức song song “一方面……，另一方面……” thường dùng để giải thích hai phương diện nguyên nhân, tình huống cùng tồn tại đồng thời.",
+                "examples": [
+                    "(1) 来到中国留学，一方面是为了学习语言和知识，另一方面也是为将来的工作和生活做准备。",
+                    "(2) 他经常在网上买东西，一方面因为便宜，另一方面因为方便。",
+                    "(3) 多做运动一方面能让身体更健康，另一方面也能减轻压力。"
+                ]
+            }
+        },
+        {
+            "type": "open_cloze",
+            "data": {
+                "title": "完成句子",
+                "questions": [
+                    "我很喜欢旅游，因为()，()。",
+                    "要想学好中文，()，()。",
+                    "我每天骑自行车上下班，()，()。"
+                ]
+            }
+        },
+
+        # ==================== LUYỆN TẬP TỔNG HỢP ====================
+        {
+            "type": "title_slide",
+            "data": {
+                "title_zh": "综合练习",
+                "lesson_number": "1",
+                "bg_image": "assets/hinhnen.png",
+                "show_number": False
+            }
+        },
+        {
+            "type": "fill_in_blanks",
+            "data": {
+                "title": "选词填空",
+                "questions": [
+                    "(1) 她______了三年的奖学金，高兴极了。",
+                    "(2) 我是2024年______的，学的是国际经济专业。",
+                    "(3) 我打算考研究生，提高自己的______水平。",
+                    "(4) 咱们晚上别去______吃饭了，我请你出去吃饭吧。",
+                    "(5) 王经理今天下午去办______了，您明天再来找他吧。"
+                ],
+                "options": ["A 入学", "B 签证", "C 获得", "D 专业", "E 食堂"]
+            }
+        },
+        {
+            "type": "fill_in_blanks",
+            "data": {
+                "title": "选词填空",
+                "questions": [
+                    "(6) A: 你______想做什么工作？\nB: 我想在国际公司工作，有更多的发展机会。",
+                    "(7) A: 你为什么选择这门______课程？\nB: 因为我想认真______中国的历史和文化。",
+                    "(8) A: 今天下午公司有______，我晚点儿回家。\nB: 好。大概几点结束？需要我去接你吗？"
+                ],
+                "options": ["A 加油", "B 研究", "C 活动", "D 任何", "E 将来"]
+            }
+        },
+        {
+            "type": "fill_in_blanks",
+            "data": {
+                "title": "选词填空",
+                "questions": [
+                    "(9) A: 你们要去哪儿？\nB: 我们要去给参加比赛的同学______，你去吗？",
+                    "(10) A: 你们这次旅游怎么样？\nB: 虽然天气不太好，但是和朋友在一起，做______事情都很有意思。"
+                ],
+                "options": ["A 加油", "B 研究", "C 活动", "D 任何", "E 将来"]
+            }
+        },
+        {
+            "type": "complete_passage_abcd",
+            "data": {
+                "title": "选择合适的内容完成短文",
+                "context_text": "李雪还有一年就本科毕业了，________。为了准备考试，________，还读了一些新的专业书，希望更多地了解这方面的知识。有时候她学习的时间很长，________，但是她还是坚持每天学习。随着考试的时间越来越近，李雪也更努力地复习，________，在新的学校里继续学习更多知识。",
+                "options": [
+                    "A. 也会觉得有一些压力",
+                    "B. 她除了复习大学学过的课程",
+                    "C. 她决定参加硕士研究生考试",
+                    "D. 希望拿到研究生的入学通知书"
+                ]
+            }
+        },
+
+        # ==================== MIÊU TẢ TRANH (HSK4) ====================
+        {
+            "type": "slide_describe_picture_hsk4",
+            "data": {
+                "title": "看图，用词语造句",
+                "quyen": "4",
+                "bai": "1",
+                "items": [
+                    {"word": "申请"},
+                    {"word": "通知"},
+                    {"word": "压力"}
+                ]
+            }
+        },
+
+
+        # ==================== HOẠT ĐỘNG NHÓM ====================
+        {
+            "type": "class_activity_pair_work_2",
+            "data": {
+                "title": "角色扮演",
+                "instruction": "Người bạn thân của bạn dự định sang năm cũng đến Trung Quốc du học, nhưng anh ấy/cô ấy vẫn còn nhiều điều chưa hiểu về thủ tục du học cũng như việc học tập và sinh hoạt tại Trung Quốc. Trong cuộc gọi video hôm nay, hãy dựa vào trải nghiệm của bản thân để giới thiệu những thông tin liên quan và đưa ra lời khuyên cho họ.",
+                "dialogue": "A: 我明年也想去中国留学，需要准备什么材料？\nB: ______"
+            }
+        },
+
+        # ==================== VIẾT ====================
+        {
+            "type": "slide_writing_hsk4",
+            "data": {
+                "title": "写作",
+                "instruction_zh": "学校即将举办“留学中国”宣讲会。为了让外国学生更好地了解他们在中国大学的学习和生活，请根据上面谈论的内容，写一段介绍，不少于120字。",
+                "instruction_vi": "Trường học sắp tổ chức buổi giới thiệu “Du học Trung Quốc”. Để giúp sinh viên nước ngoài hiểu rõ hơn về việc học tập và sinh hoạt của họ tại các trường đại học Trung Quốc, vui lòng viết một đoạn giới thiệu dựa trên nội dung đã thảo luận ở trên, không ít hơn 120 chữ.",
+                "image": "writting.png"
+            }
+        },
+
+        # ==================== TỔNG KẾT ====================
+        {
+            "type": "knowledge_summary",
+            "data": {
+                "title": "学习小结",
+                "items": [
+                    "Đại từ chỉ định “任何”: “你们以后有任何问题都可以来找我。”",
+                    "Câu phức giả định “要是……，就……”: “要是申请到奖学金，就能减轻不少经济压力。”",
+                    "Giới từ “随着”: “随着中国的发展，越来越多的外国学生来到中国的大学学习。”",
+                    "Câu phức song song “一方面……，另一方面……”: “来到中国留学，一方面是为了学习语言和知识，另一方面也是为将来的工作和生活做准备。”"
+                ]
+            }
+        },
+        {
+            "type": "summary",
+            "data": {
+                "title": "Tình hình học tập của tôi",
+                "table_header": "Nội dung tự đánh giá",
+                "row1_title_vi": "Có thể sử dụng các từ ngữ như “入学, 奖学金, 课程, 专业, 研究, 活动, 教育” trong bài để thảo luận về chủ đề du học.",
+                "row2_title_vi": "Có thể hiểu và vận dụng các điểm ngữ pháp như “任何”, “要是……，就……”, “随着”, “一方面……，另一方面……”."
+            }
+        },
+        
+        # ==================== ĐIỂM CẦN CỐ GẮNG ====================
+        {
+            "type": "effort",
+            "data": {
+                "title": "Những điểm tôi cần cố gắng:",
+                "img_path": "assets/5ting.png"
+            }
+        },
+
+        # ==================== TRANG CẢM ƠN ====================
+        {
+            "type": "title_slide",
+            "data": {
+                "title_zh": "谢谢！",
+                "lesson_number": "1",
+                "bg_image": "assets/hinhnen.png",
+                "show_number": False
+            }
+        }
+    ]
+}
