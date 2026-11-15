@@ -1,0 +1,86 @@
+Các thành phần chính trong file .js
+1. Khởi tạo namespace và khai báo thông tin bài học
+JavaScript
+window.HSK_LESSONS = window.HSK_LESSONS || {};
+
+window.HSK_LESSONS["3_3"] = {
+    bookCode: "3",             // Mã sách (Quyển 3)
+    lessonNum: 3,              // Số thứ tự bài (Bài 3)
+    badgeTitle: "GIÁO TRÌNH HSK 3.0 • QUYỂN 3",
+    titleZh: "这个小区挺好的",      // Tiêu đề tiếng Trung
+    titlePy: "Zhège xiǎoqū tǐng hǎo de", // Phiên âm Pinyin
+    titleVi: "Khu dân cư này khá tốt",  // Tiếng Việt
+    goals: [                   // Mục tiêu bài học (Objectives)
+        "Nghe hiểu và thảo luận về môi trường sống...",
+        ...
+    ],
+...
+2. Danh sách từ vựng (vocab)
+Mỗi từ vựng là một object chứa đầy đủ thông tin chi tiết phục vụ cho việc học tra cứu, phân tích chữ Hán và đặt câu:
+
+id: Số thứ tự từ.
+
+text: Thuộc bài khóa số mấy trong bài học.
+
+hz: Chữ Hán.
+
+py: Phiên âm.
+
+pos: Từ loại (noun, verb, adv, v.v.).
+
+vi: Nghĩa tiếng Việt.
+
+mw: Lượng từ đi kèm (nếu có).
+
+syn / ant: Từ đồng nghĩa / Trái nghĩa.
+
+memo: Mẹo ghi nhớ (chiết tự, phân tích bộ thủ và cấu trúc cấu thành chữ Hán).
+
+collocations: Các cụm từ hay đi kèm (搭配)(5 ví dụ).
+
+Ví dụ mẫu từ vựng:
+
+JavaScript
+{
+    id: 1,
+    text: 1,
+    hz: "初中",
+    py: "chūzhōng",
+    pos: "n.",
+    vi: "trung học cơ sở (cấp 2)",
+    mw: ["所", "个"],
+    syn: ["初级中学"],
+    ant: ["高中"],
+    memo: "初 (sơ cấp, ban đầu) + 中 (trung học) → Trường trung học cơ sở",
+    collocations: ["上初中", "初中生", "初中毕业", "一所初中"]
+}
+3. Nội dung bài khóa (texts)
+Bao gồm toàn bộ các đoạn hội thoại (hoặc đoạn văn) trong sách, kèm theo bối cảnh, câu thoại từng người (Speaker, Text tiếng Trung, Pinyin, Tiếng Việt) và hệ thống bài tập trắc nghiệm (mc) / tự luận (qa) đi kèm từng bài khóa.
+
+4. Giải thích ngữ pháp (grammar)
+Trình bày các điểm ngữ pháp trọng tâm của bài:
+
+title: Tên điểm ngữ pháp.
+
+explanation: Giải thích chi tiết cách dùng, cấu trúc.
+
+examples: Các câu ví dụ minh họa (chứa cả tiếng Trung và tiếng Việt).
+
+5. Bài tập sắp xếp câu (sentenceExercises-10 câu)
+Chứa các mảng câu hỏi đảo lộn thứ tự từ (shuffled) để người học thực hành sắp xếp lại thành câu hoàn chỉnh (correct) tương ứng với từng phần ngữ pháp.
+
+6. Luyện tập tổng hợp (comprehensivePractice)
+Các dạng bài tập trắc nghiệm điền từ vào chỗ trống (groupTitle, options, danh sách câu hỏi kèm đáp án và giải thích chi tiết explain).
+
+Các bước để viết một file .js tương tự cho bài học mới:
+Thu thập dữ liệu từ PDF: Trích xuất chính xác tiêu đề, danh sách từ vựng mới (kèm từ loại, nghĩa), nội dung các đoạn hội thoại (bài khóa) và phần giải thích ngữ pháp, bài tập trong sách.
+
+Xây dựng mẹo ghi nhớ (Memo): Phân tích từng chữ Hán theo phương pháp chiết tự (tách bộ thủ và ý nghĩa các thành phần) để giúp người học nhớ từ lâu hơn.
+
+Định dạng cú pháp JavaScript:
+
+Bọc toàn bộ dữ liệu trong cấu trúc object chuẩn của window.HSK_LESSONS["<book>_<lesson>"].
+
+Đảm bảo các dấu ngoặc nhọn {} , ngoặc vuông [], dấu phẩy , được đặt chính xác để tránh lỗi cú pháp khi nạp vào trình duyệt.
+
+Lưu file: Lưu tệp với phần mở rộng .js (ví dụ: hsk3_bai3.js) bằng công cụ lưu văn bản/mã nguồn thích hợp.

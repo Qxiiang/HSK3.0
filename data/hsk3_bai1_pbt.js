@@ -111,6 +111,146 @@ window.HSK_WORKSHEETS["3_1"] = {
                     explain: "Định ngữ chỉ số lượng “很多” đứng trước tính từ “重要的”."
                 }
             ]
+        },
+        {
+            partTitle: "Phần IV: Đặt câu với toàn bộ 27 từ mới của Bài 1 (AI chấm & sửa lỗi)",
+            questions: [
+                {
+                    type: "ai",
+                    q: "14. Đặt câu với từ 【以为】 (yǐwéi - tưởng rằng):",
+                    sampleAnswer: "我还以为今天是星期天呢，差点儿迟到了。"
+                },
+                {
+                    type: "ai",
+                    q: "15. Đặt câu với từ 【像】 (xiàng - giống):",
+                    sampleAnswer: "他跟他的哥哥长得非常像。"
+                },
+                {
+                    type: "ai",
+                    q: "16. Đặt câu với từ 【长】 (zhǎng - lớn lên, trông ngoại hình):",
+                    sampleAnswer: "几年不见，你弟弟长高了很多。"
+                },
+                {
+                    type: "ai",
+                    q: "17. Đặt câu với từ 【身高】 (shēngāo - chiều cao):",
+                    sampleAnswer: "我哥哥的身高有一米八，在班里是最高的。"
+                },
+                {
+                    type: "ai",
+                    q: "18. Đặt câu với từ 【米】 (mǐ - mét):",
+                    sampleAnswer: "这个年轻人身高大概一米七五左右。"
+                },
+                {
+                    type: "ai",
+                    q: "19. Đặt câu với từ 【瘦】 (shòu - gầy):",
+                    sampleAnswer: "她最近工作太忙了，看起来比以前瘦了一点儿。"
+                },
+                {
+                    type: "ai",
+                    q: "20. Đặt câu với từ 【接】 (jiē - đón):",
+                    sampleAnswer: "明天上午十点我去机场接我的朋友。"
+                },
+                {
+                    type: "ai",
+                    q: "21. Đặt câu với từ 【行李】 (xíngli - hành lý):",
+                    sampleAnswer: "下飞机以后，我们先去取行李吧。"
+                },
+                {
+                    type: "ai",
+                    q: "22. Đặt câu với từ 【丢】 (diū - mất, đánh mất):",
+                    sampleAnswer: "我的手机昨天在公共汽车上丢了。"
+                },
+                {
+                    type: "ai",
+                    q: "23. Đặt câu với từ 【箱子】 (xiāngzi - vali, hộp):",
+                    sampleAnswer: "这个黑色的箱子太重了，我一个人拿不动。"
+                },
+                {
+                    type: "ai",
+                    q: "24. Đặt câu với từ 【号码】 (hàomǎ - số, mã số):",
+                    sampleAnswer: "请问，你的手机号码是多少？"
+                },
+                {
+                    type: "ai",
+                    q: "25. Đặt câu với từ 【好像】 (hǎoxiàng - hình như):",
+                    sampleAnswer: "外面好像下雨了，你出去的时候带把伞吧。"
+                },
+                {
+                    type: "ai",
+                    q: "26. Đặt câu với từ 【重要】 (zhòngyào - quan trọng):",
+                    sampleAnswer: "出国旅游的时候，护照和机票是最重要的。"
+                },
+                {
+                    type: "ai",
+                    q: "27. Đặt câu với từ 【着急】 (zháojí - lo lắng, sốt ruột):",
+                    sampleAnswer: "别着急，时间还早，我们一定能赶上飞机。"
+                },
+                {
+                    type: "ai",
+                    q: "28. Đặt câu với từ 【护照】 (hùzhào - hộ chiếu):",
+                    sampleAnswer: "办理登机手续的时候需要看你的护照。"
+                },
+                {
+                    type: "ai",
+                    q: "29. Đặt câu với từ 【服务台】 (fúwùtái - quầy dịch vụ):",
+                    sampleAnswer: "如果找不到行李，你可以去机场服务台问一下。"
+                },
+                {
+                    type: "ai",
+                    q: "30. Đặt câu với từ 【应该】 (yīnggāi - nên, chắc là):",
+                    sampleAnswer: "飞机九点就到了，他们现在应该快出来了。"
+                },
+                {
+                    type: "ai",
+                    q: "31. Đặt câu với từ 【站】 (zhàn - đứng):",
+                    sampleAnswer: "门口站着一个穿着白衣服的女孩儿。"
+                },
+                {
+                    type: "ai",
+                    q: "32. Đặt câu với từ 【中间】 (zhōngjiān - ở giữa):",
+                    sampleAnswer: "站在中间的那个人就是我们的汉语老师。"
+                },
+                {
+                    type: "ai",
+                    q: "33. Đặt câu với từ 【短】 (duǎn - ngắn):",
+                    sampleAnswer: "她以前是长头发，现在剪成短头发了。"
+                },
+                {
+                    type: "ai",
+                    q: "34. Đặt câu với từ 【头发】 (tóufa - tóc):",
+                    sampleAnswer: "那个长头发的姑娘是我的同学。"
+                },
+                {
+                    type: "ai",
+                    q: "35. Đặt câu với từ 【年轻】 (niánqīng - trẻ):",
+                    sampleAnswer: "王老师的姐姐看起来非常年轻，像大学生一样。"
+                },
+                {
+                    type: "ai",
+                    q: "36. Đặt câu với từ 【发现】 (fāxiàn - phát hiện):",
+                    sampleAnswer: "我走到机场门口才发现忘记带手机了。"
+                },
+                {
+                    type: "ai",
+                    q: "37. Đặt câu với từ 【不见】 (bújiàn - không thấy đâu, biến mất):",
+                    sampleAnswer: "奇怪，我刚才放在桌子上的钥匙怎么不见了？"
+                },
+                {
+                    type: "ai",
+                    q: "38. Đặt câu với từ 【带】 (dài - mang theo, dẫn theo):",
+                    sampleAnswer: "明天去北京出差，我只带了一个小行李箱。"
+                },
+                {
+                    type: "ai",
+                    q: "39. Đặt câu với từ 【帮助】 (bāngzhù - giúp đỡ):",
+                    sampleAnswer: "非常感谢你昨天帮助我找到了护照。"
+                },
+                {
+                    type: "ai",
+                    q: "40. Đặt câu với từ 【照片】 (zhàopiàn - bức ảnh):",
+                    sampleAnswer: "这张照片是去年我们一起去北京旅游时拍的。"
+                }
+            ]
         }
     ]
 };
