@@ -47,6 +47,9 @@ function escapeJsSingleQuote(str) {
 function initApp() {
     renderBooksGrid();
     updateAiKeyBadge();
+    if (typeof updateExcelStatusBadge === 'function') {
+        updateExcelStatusBadge();
+    }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -819,6 +822,8 @@ function openGrammarExercise(grammarId) {
     currentActiveGrammarId = grammarId;
     document.getElementById('ex-modal-badge').textContent = `Bài tập luyện tập • Điểm ngữ pháp ${grammarId}`;
     document.getElementById('exercise-score-text').textContent = "";
+    const statusEl = document.getElementById('grammar-excel-status');
+    if (statusEl) statusEl.classList.add('hidden');
 
     const exMap = currentLesson ? (currentLesson.sentenceExercises || {}) : {};
     const questions = exMap[grammarId] || [];
@@ -843,6 +848,7 @@ function submitSentenceExercises() {
     const exMap = currentLesson ? (currentLesson.sentenceExercises || {}) : {};
     const questions = exMap[currentActiveGrammarId] || [];
     let correctCount = 0;
+    const detailsArray = [];
 
     questions.forEach((q, idx) => {
         const inputEl = document.getElementById(`sentence-input-${idx}`);
@@ -850,7 +856,8 @@ function submitSentenceExercises() {
         feedbackEl.classList.remove('hidden');
 
         const clean = s => s.trim().replace(/[\s，。！？、,.!?]/g, '');
-        if (clean(inputEl.value) === clean(q.correct)) {
+        const isCorrect = clean(inputEl.value) === clean(q.correct);
+        if (isCorrect) {
             correctCount++;
             feedbackEl.innerHTML = `🎉 Chính xác! Đáp án: <strong class="zh-font">${q.correct}</strong>`;
             feedbackEl.className = "text-xs font-bold text-emerald-700 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200";
@@ -858,9 +865,20 @@ function submitSentenceExercises() {
             feedbackEl.innerHTML = `❌ Chưa đúng. Đáp án chuẩn: <strong class="zh-font">${q.correct}</strong>`;
             feedbackEl.className = "text-xs font-bold text-rose-700 bg-rose-50 p-2.5 rounded-lg border border-rose-200";
         }
+
+        detailsArray.push({
+            question: `Sắp xếp: ${q.shuffled.join(' / ')}`,
+            userAnswer: inputEl.value.trim(),
+            correctAnswer: q.correct,
+            isCorrect: isCorrect
+        });
     });
 
     document.getElementById('exercise-score-text').textContent = `Kết quả: Đúng ${correctCount} / ${questions.length} câu.`;
+
+    if (typeof submitGrammarResultToExcel === 'function' && questions.length > 0) {
+        submitGrammarResultToExcel(currentActiveGrammarId, correctCount, questions.length, detailsArray);
+    }
 }
 
 // --- QUẢN LÝ GEMINI API KEY & CHẤM BÀI AI ---
@@ -1061,6 +1079,34 @@ function renderWorksheetSection() {
         renderWorksheetTab();
     } else if (!vocab.length && customContainer) {
         customContainer.innerHTML = `<div class="bg-white p-6 rounded-2xl border border-slate-200 text-sm text-slate-500">Chưa có phiếu bài tập cho bài này.</div>`;
+    }
+
+    const wsTab = document.getElementById('tab-worksheet');
+    if (wsTab) {
+        let submitBar = document.getElementById('worksheet-submit-bar');
+        if (!submitBar) {
+            submitBar = document.createElement('div');
+            submitBar.id = 'worksheet-submit-bar';
+            wsTab.appendChild(submitBar);
+        }
+        submitBar.className = "bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3";
+        submitBar.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                    <h4 class="text-sm sm:text-base font-bold text-slate-900">📤 Nộp kết quả Phiếu bài tập cho giáo viên</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Toàn bộ câu đặt từ mới (kèm nhận xét AI nếu đã chấm) và bài làm phiếu mở rộng sẽ được gửi thẳng về bảng Excel.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <button onclick="submitWorksheetToExcel()" class="px-5 py-2.5 rounded-xl bg-rose-800 hover:bg-rose-900 text-white text-xs font-semibold flex items-center gap-1.5 shadow-2xs transition-colors">
+                        <span>📊</span> <span>Nộp Phiếu bài tập về Excel</span>
+                    </button>
+                    <button onclick="downloadWorksheetExcel()" class="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 shadow-2xs transition-colors">
+                        <span>📥</span> <span>Tải file Excel (.xlsx)</span>
+                    </button>
+                </div>
+            </div>
+            <div id="worksheet-excel-status" class="hidden"></div>
+        `;
     }
 }
 

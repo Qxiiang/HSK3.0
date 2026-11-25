@@ -6,6 +6,7 @@
     <title>Giáo trình HSK 3.0 - Hệ thống học tập tương tác</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -161,7 +162,11 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="updateExcelStatusBadge(); toggleModal('excel-config-modal', true)" id="btn-excel-status" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500/25 hover:bg-emerald-500/40 border border-emerald-300/40 text-xs font-semibold text-emerald-100 transition-all">
+                            <span>📊</span>
+                            <span id="excel-status-label">Kết nối Excel</span>
+                        </button>
                         <button onclick="toggleModal('ai-key-modal', true)" id="btn-ai-status" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-500/25 hover:bg-amber-500/40 border border-amber-300/40 text-xs font-semibold text-amber-100 transition-all">
                             <span>✨</span>
                             <span id="ai-status-label">Cài đặt AI Chấm bài</span>
@@ -371,10 +376,12 @@
                 <button onclick="toggleModal('grammar-exercise-modal', false)" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">✕</button>
             </div>
             <div id="ex-modal-body" class="space-y-4 text-sm text-slate-700"></div>
-            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+            <div id="grammar-excel-status" class="hidden"></div>
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-slate-100">
                 <span id="exercise-score-text" class="text-xs font-bold text-slate-600"></span>
-                <div class="flex gap-2">
-                    <button onclick="submitSentenceExercises()" class="px-5 py-2.5 rounded-xl bg-rose-800 hover:bg-rose-900 text-white font-semibold text-xs shadow-2xs">Nộp bài & Kiểm tra</button>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="submitSentenceExercises()" class="px-4 py-2.5 rounded-xl bg-rose-800 hover:bg-rose-900 text-white font-semibold text-xs shadow-2xs">Nộp bài & Gửi Excel</button>
+                    <button onclick="downloadLastGrammarExcel()" class="px-3.5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs shadow-2xs">📥 Tải Excel</button>
                     <button onclick="toggleModal('grammar-exercise-modal', false)" class="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs">Đóng</button>
                 </div>
             </div>
@@ -477,12 +484,58 @@
         </div>
     </div>
 
+    <!-- ================= MODAL KẾT NỐI EXCEL & THÔNG TIN HỌC VIÊN ================= -->
+    <div id="excel-config-modal" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span>📊</span> Kết nối Excel & Thông tin học viên
+                </h3>
+                <button onclick="toggleModal('excel-config-modal', false)" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">✕</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-700">Họ và tên học viên <span class="text-rose-600">*</span>:</label>
+                    <input type="text" id="student-name-input" placeholder="Ví dụ: Nguyễn Minh Anh" class="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:border-rose-700">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-700">Lớp / Nhóm (tùy chọn):</label>
+                    <input type="text" id="student-class-input" placeholder="Ví dụ: HSK 3 - K12" class="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:border-rose-700">
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-slate-700">Link Google Apps Script (nhận dữ liệu vào Sheets / Excel):</label>
+                <input type="text" id="excel-webhook-input" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3.5 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:border-rose-700">
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs text-slate-600">
+                <div class="flex items-center justify-between">
+                    <span class="font-bold text-slate-800">Hướng dẫn nhận bài tự động cho Giáo viên:</span>
+                    <button id="btn-copy-gas" onclick="copyAppsScriptCode()" class="px-2.5 py-1 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-[11px]">📋 Copy mã Apps Script</button>
+                </div>
+                <ol class="list-decimal list-inside space-y-1 text-[11px] leading-relaxed">
+                    <li>Tạo file <strong>Google Sheets</strong> mới → vào <strong>Tiện ích mở rộng &gt; Apps Script</strong>.</li>
+                    <li>Dán mã vừa copy vào → bấm <strong>Triển khai &gt; Tùy chọn triển khai mới &gt; Ứng dụng web</strong> (Quyền truy cập: <em>Bất kỳ ai</em>).</li>
+                    <li>Copy URL Web App dán vào ô trên (hoặc dán vào biến <code class="bg-slate-200 px-1 rounded">TEACHER_EXCEL_WEBHOOK_URL</code> trong file <code class="bg-slate-200 px-1 rounded">excel-sync.js</code> để áp dụng cho mọi học viên).</li>
+                </ol>
+            </div>
+
+            <div class="flex gap-2.5 pt-2">
+                <button onclick="saveExcelConfig()" class="flex-1 py-2.5 rounded-xl bg-rose-800 hover:bg-rose-900 text-white font-semibold text-xs shadow-2xs">Lưu & Tiếp tục</button>
+                <button onclick="toggleModal('excel-config-modal', false)" class="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-semibold text-xs">Đóng</button>
+            </div>
+        </div>
+    </div>
+
     <!-- NẠP DANH MỤC DỮ LIỆU BÀI HỌC & SÁCH BÀI TẬP -->
     <script src="book-index.js"></script>
 
     <!-- NẠP CÁC MODULE XỬ LÝ GIAO DIỆN -->
     <script src="workbook.js"></script>
     <script src="tab-phieubaitap.js"></script>
+    <script src="excel-sync.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
