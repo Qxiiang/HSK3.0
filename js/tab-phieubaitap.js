@@ -64,6 +64,16 @@ function renderWorksheetTab() {
                         </div>
                         <div id="fb-${uid}" class="hidden text-xs p-2.5 rounded-lg"></div>
                     </div>`;
+            } else if (qItem.type === 'ai') {
+                html += `
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div class="flex items-center justify-between gap-2">
+                            <p class="zh-font text-sm sm:text-base font-medium text-slate-900">${qItem.q}</p>
+                            <span class="shrink-0 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">✨ AI Chấm</span>
+                        </div>
+                        <textarea id="input-${uid}" rows="2" placeholder="Nhập câu tiếng Trung của bạn để AI chấm điểm và sửa lỗi..." class="w-full px-3.5 py-2 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:border-indigo-600 zh-font"></textarea>
+                        <div id="fb-${uid}" class="hidden text-xs p-3 rounded-lg"></div>
+                    </div>`;
             } else {
                 html += `
                     <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
@@ -84,7 +94,7 @@ function renderWorksheetTab() {
                 <div id="ws-sync-status" class="text-xs font-medium text-slate-500"></div>
             </div>
             <button id="btn-submit-ws" onclick="submitWorksheet()" class="px-6 py-2.5 rounded-xl bg-rose-800 hover:bg-rose-900 text-white font-semibold text-sm shadow-xs transition-all">
-                Nộp Phiếu bài tập & Gửi giáo viên
+                Nộp Phiếu bài tập & Chấm AI
             </button>
         </div>
     `;
@@ -105,25 +115,26 @@ function submitWorksheet() {
         return;
     }
 
-    let total = 0;
-    let correct = 0;
+    let autoTotal = 0;
+    let autoCorrect = 0;
     let detailLines = [];
+    let aiQuestionsPayload = [];
     const clean = s => String(s || '').trim().replace(/[\s，。！？、,.!?]/g, '');
 
     (wsData.parts || []).forEach((part, pIdx) => {
         (part.questions || []).forEach((qItem, qIdx) => {
-            total++;
             const uid = `ws-${pIdx}-${qIdx}`;
             const fb = document.getElementById(`fb-${uid}`);
             if (fb) fb.classList.remove('hidden');
 
             if (qItem.type === 'mc') {
+                autoTotal++;
                 const selected = document.querySelector(`input[name="${uid}"]:checked`);
                 const userAns = selected ? selected.value : "(Bỏ trống)";
                 const isRight = selected && selected.value === qItem.answer;
 
                 if (isRight) {
-                    correct++;
+                    autoCorrect++;
                     if (fb) {
                         fb.innerHTML = `✅ <strong>Chính xác!</strong> ${qItem.explain || ''}`;
                         fb.className = "text-xs p-2.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200";
@@ -134,15 +145,39 @@ function submitWorksheet() {
                         fb.className = "text-xs p-2.5 rounded-lg bg-rose-50 text-rose-800 border border-rose-200";
                     }
                 }
-                detailLines.push(`Câu ${total}: Chọn ${userAns} [${isRight ? 'Đúng' : 'Sai - ĐA: ' + qItem.answer}]`);
+                detailLines.push(`[TN] ${qItem.q} -> Chọn ${userAns} (${isRight ? 'Đúng' : 'Sai'})`);
+            } else if (qItem.type === 'ai') {
+                const inputEl = document.getElementById(`input-${uid}`);
+                const userAns = inputEl ? inputEl.value.trim() : "";
+
+                if (!userAns) {
+                    if (fb) {
+                        fb.innerHTML = `⚠️ Bạn đã bỏ trống câu này. Gợi ý mẫu: <strong class="zh-font">${qItem.sampleAnswer || ''}</strong>`;
+                        fb.className = "text-xs p-3 rounded-lg bg-amber-50 text-amber-800 border border-amber-200";
+                    }
+                    detailLines.push(`[AI] ${qItem.q} -> (Bỏ trống)`);
+                } else {
+                    if (fb) {
+                        fb.innerHTML = `⏳ <em>AI đang đọc và chấm câu trả lời của bạn...</em>`;
+                        fb.className = "text-xs p-3 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200";
+                    }
+                    aiQuestionsPayload.push({
+                        id: uid,
+                        question: qItem.q,
+                        referenceAnswer: qItem.sampleAnswer || "",
+                        studentAnswer: userAns
+                    });
+                    detailLines.push(`[AI] ${qItem.q} -> Bài làm: "${userAns}"`);
+                }
             } else {
+                autoTotal++;
                 const inputEl = document.getElementById(`input-${uid}`);
                 const userAns = inputEl ? inputEl.value.trim() : "";
                 const acceptedAnswers = Array.isArray(qItem.answer) ? qItem.answer : [qItem.answer];
                 const isRight = inputEl && acceptedAnswers.some(ans => clean(userAns) === clean(ans));
 
                 if (isRight) {
-                    correct++;
+                    autoCorrect++;
                     if (fb) {
                         fb.innerHTML = `✅ <strong>Chính xác!</strong> ${qItem.explain || ''}`;
                         fb.className = "text-xs p-2.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200";
@@ -153,41 +188,60 @@ function submitWorksheet() {
                         fb.className = "text-xs p-2.5 rounded-lg bg-rose-50 text-rose-800 border border-rose-200";
                     }
                 }
-                detailLines.push(`Câu ${total}: "${userAns || 'Bỏ trống'}" [${isRight ? 'Đúng' : 'Sai - ĐA: ' + acceptedAnswers[0]}]`);
+                detailLines.push(`[Điền từ] ${qItem.q} -> "${userAns || 'Bỏ trống'}" (${isRight ? 'Đúng' : 'Sai'})`);
             }
         });
     });
 
-    const scoreText = `${correct}/${total}`;
-    document.getElementById('ws-score-result').textContent = `Học viên ${studentName} — Kết quả: Đúng ${scoreText} câu.`;
+    const scoreText = autoTotal > 0 ? `${autoCorrect}/${autoTotal} (Tự động)` : "Chấm AI";
+    document.getElementById('ws-score-result').textContent = autoTotal > 0
+        ? `Học viên ${studentName} — Phần trắc nghiệm/điền từ: Đúng ${autoCorrect}/${autoTotal} câu.`
+        : `Học viên ${studentName} — Đang xử lý chấm điểm AI...`;
 
     const syncStatusEl = document.getElementById('ws-sync-status');
     const submitBtn = document.getElementById('btn-submit-ws');
 
-    syncStatusEl.textContent = "⏳ Đang gửi bài làm cho giáo viên...";
+    syncStatusEl.textContent = aiQuestionsPayload.length > 0
+        ? "⏳ Đang gửi bài cho AI chấm điểm và lưu về Google Sheets..."
+        : "⏳ Đang gửi bài làm cho giáo viên...";
     syncStatusEl.className = "text-xs font-medium text-slate-500";
     submitBtn.disabled = true;
     submitBtn.classList.add("opacity-60");
 
+    // Sử dụng text/plain để tránh lỗi CORS preflight khi nhận phản hồi JSON từ Google Apps Script
     fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
             studentName: studentName,
             lessonKey: currentLessonKey,
             worksheetTitle: wsData.title || "Phiếu bài tập",
             score: scoreText,
-            details: detailLines.join("\n")
+            details: detailLines.join("\n"),
+            aiQuestions: aiQuestionsPayload
         })
     })
-    .then(() => {
-        syncStatusEl.textContent = "✅ Đã gửi kết quả thành công cho giáo viên!";
+    .then(res => res.json())
+    .then(data => {
+        if (data.aiResults && data.aiResults.length > 0) {
+            data.aiResults.forEach(item => {
+                const fb = document.getElementById(`fb-${item.id}`);
+                if (fb) {
+                    const icon = item.isCorrect ? "✅" : "💡";
+                    const colorClass = item.isCorrect
+                        ? "bg-emerald-50 text-emerald-900 border-emerald-200"
+                        : "bg-indigo-50 text-indigo-950 border-indigo-200";
+                    fb.innerHTML = `${icon} <strong>AI chấm (${item.score}):</strong> ${item.feedback}`;
+                    fb.className = `text-xs p-3 rounded-lg border leading-relaxed ${colorClass}`;
+                }
+            });
+        }
+        syncStatusEl.textContent = "✅ Đã chấm điểm xong và gửi kết quả cho giáo viên!";
         syncStatusEl.className = "text-xs font-bold text-emerald-700";
     })
     .catch(() => {
-        syncStatusEl.textContent = "❌ Lỗi kết nối mạng, chưa gửi được bài. Vui lòng thử bấm nộp lại.";
-        syncStatusEl.className = "text-xs font-bold text-rose-600";
+        syncStatusEl.textContent = "⚠️ Đã gửi dữ liệu nhưng không nhận được phản hồi từ AI (kiểm tra lại API Key trong Apps Script).";
+        syncStatusEl.className = "text-xs font-bold text-amber-700";
     })
     .finally(() => {
         submitBtn.disabled = false;
